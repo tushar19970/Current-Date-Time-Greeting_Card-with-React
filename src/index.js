@@ -1,17 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const curDate = new Date().toLocaleDateString();
+const curTime = new Date().toLocaleTimeString();
+const links = "https://www.timeanddate.com/worldclock/india";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+let currentDate = new Date();
+currentDate = currentDate.getHours();
+let greeting = "";
+const cssStyle = { };
+
+if (currentDate >= 0 && currentDate < 12){
+  greeting = "Good Morning";
+  cssStyle.color = "green";
+} else if (currentDate >= 12 && currentDate < 16) {
+  greeting = "Good Afternoon";
+  cssStyle.color = "orange";
+} else if (currentDate >= 16 && currentDate < 20){
+  greeting = "Good Evening";
+  cssStyle.color = "skyblue";
+} else {
+  greeting = "Good Night";
+  cssStyle.color = "black";
+}
+
+ReactDom.render(
+  <>
+    <div className="container" >
+    <a href= {links} target="_tushar">
+      <h2>Today's Date is = {curDate}</h2>
+      <h2>Current Time is = {curTime}</h2>
+    </a>
+        <h1>Hello Sir/Mam, <span style = {cssStyle} > {greeting} </span> </h1>
+    </div>
+  </>,
+    document.getElementById("root")
+)
+
+
+
